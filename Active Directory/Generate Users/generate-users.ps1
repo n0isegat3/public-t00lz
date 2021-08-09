@@ -1,7 +1,7 @@
-﻿$total = 1000
+﻿$total = 100
 
-$domainname = "wbi.lab"
-$userpath = "OU=Lab,DC=cyber-rangers,DC=lab"
+$domainname = "cyber-rangers.lab"
+$userpath = "OU=Generic Users,OU=Lab,DC=cyber-rangers,DC=lab"
 $company = 'Cyber Rangers'
 $departments = 'Sales','Research','Marketing','IT'
 $offices = Import-Csv .\generate-users-offices.csv -Delimiter ","
@@ -33,7 +33,7 @@ for ($userIndex=0; $userIndex -lt $total; $userIndex++)
    -Description ("Cyber Rangers Lab User")`
    -DisplayName $userdisplayname `
    -Division "" `
-   -EmailAddress "$userName@wbi.lab" `
+   -EmailAddress "$userName@$domainname" `
     -EmployeeNumber "$userID" `
    -EmployeeID "ISED$userID" `
    -Enabled $true `
@@ -55,4 +55,7 @@ for ($userIndex=0; $userIndex -lt $total; $userIndex++)
    -Surname $userlastname `
    -Title $(Get-Random $titles) `
    -UserPrincipalName "$userName@$domainname" `
+   -verbose
  }
+
+ pause
